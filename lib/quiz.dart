@@ -8,7 +8,8 @@ class Quiz extends StatelessWidget {
   final Function(int score) doSomething;
   final int qindex;
 
-  Quiz(@required this.questions, @required this.doSomething, @required this.qindex);
+  Quiz(@required this.questions, @required this.doSomething,
+      @required this.qindex);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,8 @@ class Quiz extends StatelessWidget {
         child: Column(
       children: [
         Question(questions[qindex]['questionText'] as String),
-        ...(questions[qindex]['answers'] as List<Map<String, dynamic>>).map((answer) {
+        ...(questions[qindex]['answers'] as List<Map<String, dynamic>>)
+            .map((answer) {
           return Answer(() => doSomething(answer['score']), answer['text']);
         }).toList()
       ],

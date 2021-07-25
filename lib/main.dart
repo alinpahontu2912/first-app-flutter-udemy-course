@@ -15,6 +15,13 @@ class _MyAppState extends State<MyApp> {
   var _qindex = 0;
   var _score = 0;
 
+  void _resetQuiz() {
+    setState(() {
+      _qindex = 0;
+      _score = 0;
+    });
+  }
+
   static const _questions = const [
     {
       'questionText': 'What\'s your favorite color?',
@@ -72,7 +79,7 @@ class _MyAppState extends State<MyApp> {
         ),
         body: _qindex < _questions.length
             ? Quiz(_questions, _answerQuestion, _qindex)
-            : Result(),
+            : Result(_score, _resetQuiz),
       ),
     );
   }
