@@ -13,29 +13,51 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var _qindex = 0;
+  var _score = 0;
 
   static const _questions = const [
     {
       'questionText': 'What\'s your favorite color?',
-      'answers': ['Black', 'Red', 'White', 'Green'],
+      'answers': [
+        {'text': 'Black', 'score': 5},
+        {'text': 'Red', 'score': 4},
+        {'text': 'White', 'score': 2},
+        {'text': 'Green', 'score': 1}
+      ],
     },
     {
       'questionText': 'What\'s your favorite animal?',
-      'answers': ['Dog', 'Rhino', 'Parrot', 'Lion'],
+      'answers': [
+        {'text': 'Dog', 'score': 10},
+        {'text': 'Rhino', 'score': 8},
+        {'text': 'Parrot', 'score': 2},
+        {'text': 'Lion', 'score': 6}
+      ],
     },
     {
-      'questionText': 'What\'s your favorite programmin language?',
-      'answers': ['C++', 'Java', 'Python', 'Dart'],
+      'questionText': 'What\'s your favorite programming language?',
+      'answers': [
+        {'text': 'C++', 'score': 10},
+        {'text': 'Java', 'score': 10},
+        {'text': 'Python', 'score': 4},
+        {'text': 'Prologue', 'score': 1}
+      ],
     },
     {
       'questionText': 'Who\'s your favorite person?',
-      'answers': ['First me', 'Also me', 'Definitely me', 'Simply Me'],
+      'answers': [
+        {'text': 'First me', 'score': 10},
+        {'text': 'Also me', 'score': 10},
+        {'text': 'Definitely me', 'score': 10},
+        {'text': 'Simply me', 'score': 10}
+      ],
     }
   ];
 
   @override
   Widget build(BuildContext context) {
-    void _doSomething() {
+    void _answerQuestion(int score) {
+      _score += score;
       setState(() {
         _qindex++;
         print("Something happens");
@@ -49,7 +71,7 @@ class _MyAppState extends State<MyApp> {
           title: Text('My First App'),
         ),
         body: _qindex < _questions.length
-            ? Quiz(_questions, _doSomething, _qindex)
+            ? Quiz(_questions, _answerQuestion, _qindex)
             : Result(),
       ),
     );
